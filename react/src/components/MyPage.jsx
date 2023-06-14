@@ -1,8 +1,14 @@
 import React from 'react'
 
+import { Link } from 'react-router-dom'
+
 const MyPage = () => {
   return (
-    <div>MyPage</div>
+    <div>
+      <Link to='/updatemember'>회원정보수정</Link>
+      <Link to='/deletemember'>회원탈퇴</Link>
+    </div>
+>>>>>>> main
   )
 }
 
