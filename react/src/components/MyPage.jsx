@@ -8,7 +8,7 @@ const MyPage = () => {
       <Link to='/updatemember'>회원정보수정</Link>
       <Link to='/deletemember'>회원탈퇴</Link>
     </div>
->>>>>>> main
+
   )
 }
 
