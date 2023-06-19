@@ -1,0 +1,268 @@
+.p {
+    margin: 0;
+  }
+  .p1 {
+    margin: 0;
+    letter-spacing: 0.09em;
+  }
+  .txt {
+    line-break: anywhere;
+    width: 100%;
+  }
+  .div {
+    position: absolute;
+    top: 11.68px;
+    left: 0px;
+    line-height: 60px;
+    text-align: justify;
+    display: flex;
+    align-items: center;
+    width: 457.02px;
+    height: 138.32px;
+  }
+  .div1 {
+    position: absolute;
+    top: 0px;
+    left: 151px;
+    letter-spacing: 0.1em;
+    display: inline-block;
+    width: 51.45px;
+    height: 24.9px;
+  }
+  .div2 {
+    position: absolute;
+    top: 0px;
+    left: 207px;
+    letter-spacing: 0.1em;
+    display: inline-block;
+    width: 51.45px;
+    height: 24.9px;
+  }
+  .div3 {
+    position: absolute;
+    top: 0px;
+    left: 243px;
+    letter-spacing: 0.1em;
+    display: inline-block;
+    width: 51.45px;
+    height: 24.9px;
+  }
+  .div4 {
+    position: absolute;
+    top: 0px;
+    left: 117px;
+    letter-spacing: 0.1em;
+    display: inline-block;
+    width: 51.45px;
+    height: 24.9px;
+  }
+  .parent {
+    position: absolute;
+    top: 451px;
+    left: 577px;
+    width: 457.02px;
+    height: 150px;
+    font-size: var(--font-size-17xl);
+    color: var(--color-black);
+    font-family: var(--font-seoulnamsan);
+  }
+  .join {
+    position: absolute;
+    top: 78px;
+    left: 1315px;
+    letter-spacing: 0.1em;
+    color: var(--color-darkslategray);
+    mix-blend-mode: darken;
+  }
+  .login {
+    position: absolute;
+    top: 78px;
+    left: 1177px;
+    letter-spacing: 0.1em;
+    color: var(--color-darkslategray);
+    mix-blend-mode: darken;
+  }
+  .groupChild {
+    position: absolute;
+    height: 70.05%;
+    width: 14%;
+    top: 0%;
+    right: 86%;
+    bottom: 29.95%;
+    left: 0%;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+  }
+  .harugungang {
+    position: absolute;
+    height: 88.48%;
+    width: 92.84%;
+    top: 11.52%;
+    left: 7.16%;
+    font-weight: 500;
+    display: inline-block;
+  }
+  .vectorParent {
+    position: absolute;
+    height: 7.63%;
+    width: 27.14%;
+    top: 5.18%;
+    right: 36.33%;
+    bottom: 87.2%;
+    left: 36.53%;
+    text-align: center;
+    font-size: var(--font-size-17xl);
+  }
+  .openDoodlesIcon {
+    position: absolute;
+    height: 19.04%;
+    width: 17.43%;
+    top: 23.73%;
+    right: 42.57%;
+    bottom: 57.23%;
+    left: 40%;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+  }
+  .lowerBarChild {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: var(--color-white);
+    width: 1440px;
+    height: 80px;
+  }
+  .main {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    letter-spacing: -0.05em;
+    line-height: 50px;
+  }
+  .wishList {
+    position: absolute;
+    top: 0px;
+    left: 234px;
+    letter-spacing: -0.05em;
+    line-height: 50px;
+  }
+  .mainParent {
+    position: absolute;
+    top: 40px;
+    left: 705px;
+    width: 292px;
+    height: 50px;
+    cursor: pointer;
+  }
+  .mypage {
+    position: absolute;
+    top: 40px;
+    left: 439px;
+    letter-spacing: -0.05em;
+    line-height: 50px;
+  }
+  .lowerBar {
+    position: absolute;
+    top: 38px;
+    left: 0px;
+    width: 1440px;
+    height: 90px;
+  }
+  .vectorIcon {
+    position: absolute;
+    top: 38px;
+    left: 446px;
+    width: 47px;
+    height: 47px;
+  }
+  .component10Icon {
+    position: absolute;
+    top: -3px;
+    left: 672px;
+    width: 101px;
+    height: 101px;
+  }
+  .iconixtoboldcart {
+    position: absolute;
+    top: 32px;
+    left: 935px;
+    width: 60px;
+    height: 55px;
+    overflow: hidden;
+  }
+  .lowerBarParent {
+    position: absolute;
+    top: 896px;
+    left: 0px;
+    width: 1440px;
+    height: 128px;
+    text-align: center;
+    font-size: var(--font-size-mini);
+    color: var(--color-black);
+  }
+  .vectorIcon1 {
+    position: absolute;
+    height: 100.67%;
+    width: 100.35%;
+    top: -0.34%;
+    right: -0.17%;
+    bottom: -0.34%;
+    left: -0.17%;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+  }
+  .div5 {
+    position: absolute;
+    top: calc(50% - 24.99px);
+    left: calc(50% - 55.5px);
+    letter-spacing: 0.04em;
+  }
+  .calque12 {
+    position: absolute;
+    height: 98.15%;
+    width: 99.03%;
+    top: 0.92%;
+    right: 0.48%;
+    bottom: 0.93%;
+    left: 0.48%;
+  }
+  .buttonPrimary {
+    position: absolute;
+    top: 651px;
+    left: 374px;
+    width: 291px;
+    height: 152px;
+    overflow: hidden;
+    font-family: var(--font-seoulnamsan);
+  }
+  .div6 {
+    position: absolute;
+    top: calc(50% - 24.99px);
+    left: calc(50% - 48.5px);
+    letter-spacing: 0.04em;
+  }
+  .buttonPrimary1 {
+    position: absolute;
+    top: 651px;
+    left: 809px;
+    width: 291px;
+    height: 152px;
+    overflow: hidden;
+    text-align: center;
+    font-family: var(--font-seoulnamsan);
+  }
+  .firstPage {
+    position: relative;
+    background-color: var(--color-white);
+    width: 100%;
+    height: 1024px;
+    overflow: hidden;
+    text-align: left;
+    font-size: var(--font-size-5xl);
+    color: var(--color-forestgreen);
+    font-family: var(--font-poppins);
+  }
+  

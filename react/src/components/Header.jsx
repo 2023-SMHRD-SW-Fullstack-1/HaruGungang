@@ -1,19 +1,24 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import styles from "../styles/Header.module.css";
 
 const Header = () => {
   return (
-    <div className='header-container'>
-      <div className='header-item'>
-        <Link to='/main'>하루건강</Link>
+    <div className={styles.header}>
+      <div className={styles.header1}>
+        <div className={styles.joinParent}>
+        <Link to='/join'><div className={styles.join}>JOIN</div></Link>
+        <Link to='/login'><div className={styles.login}>LOGIN</div></Link>
+        <Link to='/main'><div className={styles.vectorParent}>
+            <img
+              className={styles.groupChild}
+              alt=""
+              src="/rectangle-113.svg"
+            />
+            <div className={styles.harugungang}>HARUGUNGANG</div>
+          </div></Link>
+        </div>
       </div>
-      <div className='header-item'>
-        <Link to='/login'>LOGIN</Link>
-      </div>
-      <div className='header-item'>
-        <Link to='/join'>JOIN</Link>
-      </div>
-
     </div>
   )
 }

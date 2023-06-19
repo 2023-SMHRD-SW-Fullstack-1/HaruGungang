@@ -1,0 +1,79 @@
+.join {
+    /* position: absolute; */
+    top: 64.07px;
+    left: 796px;
+    letter-spacing: 0.1em;
+    display: inline-block;
+    width: 62px;
+    height: 39.37px;
+    mix-blend-mode: darken;
+  }
+  .login {
+    /* position: absolute; */
+    top: 64.07px;
+    left: 652px;
+    letter-spacing: 0.1em;
+    display: inline-block;
+    width: 81px;
+    height: 39.37px;
+    mix-blend-mode: darken;
+  }
+  .groupChild {
+    /* position: absolute; */
+    height: 79.17%;
+    width: 14%;
+    top: 2.85%;
+    right: 86%;
+    bottom: 17.98%;
+    left: 0%;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+  }
+  .harugungang {
+    /* position: absolute; */
+    height: 100%;
+    width: 92.84%;
+    top: 0%;
+    left: 7.16%;
+    font-weight: 500;
+    display: inline-block;
+  }
+  .vectorParent {
+    /* position: absolute; */
+    height: 48.72%;
+    width: 43.36%;
+    top: 0%;
+    right: 56.64%;
+    bottom: 51.28%;
+    left: 0%;
+    text-align: center;
+    font-size: var(--font-size-17xl);
+    color: var(--color-forestgreen);
+  }
+  .joinParent {
+    /* position: absolute; */
+    top: 78.56px;
+    left: 534px;
+    width: 858px;
+    height: 103.44px;
+  }
+  .header1 {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    background-color: var(--color-white);
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+  }
+  .header {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    text-align: left;
+    font-size: var(--font-size-5xl);
+    color: var(--color-darkslategray);
+    font-family: var(--font-poppins);
+  }
+  
