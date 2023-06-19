@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.smhrd.haru.authentication.mapper.AuthenticationMapper">
+    <insert id="save"
+            parameterType="com.smhrd.haru.authentication.domain.HaruMember"
+    >
+        INSERT INTO harumember(
+            user_seq,
+
+            user_id,
+            user_pw,
+            user_gender,
+            user_birthdate,
+            user_joindate,
+            user_type
+        ) VALUES (
+            harumember_seq.NEXTVAL,
+
+            #{userId},
+            #{userPw},
+            #{userGender},
+            #{userBirthdate},
+            #{userJoindate},
+            #{userType}
+        )
+    </insert>
+
+    <select id="findByUserId"
+            parameterType="string"
+            resultType="com.smhrd.haru.authentication.domain.HaruMember"
+    >
+        select
+        mem.user_seq as userSeq,
+
+        mem.user_id as userId,
+        mem.user_pw as userPw,
+        mem.user_gender as userGender,
+        mem.user_birthdate as userBirthdate,
+        mem.user_joindate as userJoindate,
+        mem.user_type as userType,
+
+        mem.sns_user_id as snsUserId,
+        mem.sns_user_name as snsUserName,
+        mem.sns_user_email as snsUserEmail,
+        mem.sns_user_age as snsUserAge,
+        mem.sns_user_gender as snsUserGender
+        from harumember mem
+        where userId = #{userId}
+    </select>
+
+
+    <select id="findByUserIdAndUserPw"
+            parameterType="map"
+            resultType="com.smhrd.haru.authentication.domain.HaruMember"
+    >
+        SELECT
+            mem.user_seq as userSeq,
+
+            mem.user_id as userId,
+            mem.user_pw as userPw,
+            mem.user_gender as userGender,
+            mem.user_birthdate as userBirthdate,
+            mem.user_joindate as userJoindate,
+            mem.user_type as userType,
+
+            mem.sns_user_id as snsUserId,
+            mem.sns_user_name as snsUserName,
+            mem.sns_user_email as snsUserEmail,
+            mem.sns_user_age as snsUserAge,
+            mem.sns_user_gender as snsUserGender
+        FROM    harumember mem
+        WHERE   user_id = #{userId}
+            AND user_pw = #{userPw}
+    </select>
+</mapper>
