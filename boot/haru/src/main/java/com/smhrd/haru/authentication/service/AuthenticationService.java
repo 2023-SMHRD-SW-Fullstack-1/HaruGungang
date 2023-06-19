@@ -6,8 +6,10 @@ import com.smhrd.haru.authentication.controller.dto.SignUpRequestDto;
 import com.smhrd.haru.authentication.controller.dto.SignUpResponseDto;
 import com.smhrd.haru.authentication.domain.HaruMember;
 import com.smhrd.haru.authentication.mapper.AuthenticationMapper;
+import com.smhrd.haru.profile.service.MemberProfileService;
 import com.smhrd.haru.util.jwt.JwtProvider;
 import com.smhrd.haru.util.time.ServerTime;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,10 +19,11 @@ import java.util.Map;
 @Service
 @RequiredArgsConstructor
 public final class AuthenticationService
-    implements SignUpService, SingInService {
+    implements SignUpService, SingInService, RefreshTokenService {
 
     private final AuthenticationMapper mapper;
     private final JwtProvider jwtProvider;
+    private final MemberProfileService memberProfileService;
 
     @Override
     public HaruMember signUp(HaruMember haruMember) {
@@ -69,5 +72,18 @@ public final class AuthenticationService
         return SignInResponseDto.builder()
                 .token(signIn(dto.userId(), dto.userPw()))
                 .build();
+    }
+
+    @Override
+    public String refresh(HttpServletRequest request) {
+        // No check if refreshable, yet.
+
+        // Get user ID from request
+        String userId = memberProfileService
+                .findFromRequestInAuth(request)
+                .getUserId();
+
+        // Issue new access token
+        return jwtProvider.generate(userId);
     }
 }

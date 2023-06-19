@@ -24,6 +24,6 @@
         mem.sns_user_age as snsUserAge,
         mem.sns_user_gender as snsUserGender
         from harumember mem
-        where userId = #{userId}
+        where user_id = #{userId}
     </select>
 </mapper>
