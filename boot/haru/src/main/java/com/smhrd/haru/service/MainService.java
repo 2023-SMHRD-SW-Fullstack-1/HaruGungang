@@ -6,6 +6,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.smhrd.haru.domain.MainDTO;
 import com.smhrd.haru.domain.TblNutriRecBasic;
@@ -18,6 +19,7 @@ public class MainService {
 	@Autowired
 	private MainMapper mapper;
 	
+	@PostMapping
 	public JSONArray recNutriList(MainDTO dto) {
 		List<TblNutriRecBasic> nutriList = mapper.recNutriList(dto);
 		JSONArray jsonArray = new JSONArray();
