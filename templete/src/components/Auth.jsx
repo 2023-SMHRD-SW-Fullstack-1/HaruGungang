@@ -42,7 +42,7 @@ const Auth = () => {
 
     return (
         <div>
-            { code }
+            {/* { code } */}
         </div>
     );
 };

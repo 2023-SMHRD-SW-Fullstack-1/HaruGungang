@@ -1,16 +1,17 @@
 package com.smhrd.haru.domain;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-public class BasicDTO {
+public class JoinUserInfo {
 	
+	private String id;
+	private String pw;
 	private String gender;
-	private int ageRange;
+	private String age;
 
 }

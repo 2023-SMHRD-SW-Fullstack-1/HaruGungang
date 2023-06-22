@@ -7,6 +7,8 @@ const ProfilePath = () => {
     const [nickName, setNickName] = useState();
     const [email, setEmail] = useState();
 
+    const nav = useNavigate()
+
     const getProfile = async () => {
         try {
           // Kakao SDK API를 이용해 사용자 정보 획득
@@ -25,10 +27,27 @@ const ProfilePath = () => {
           params.append('nickName', data.properties.nickname)
           params.append('email', data.kakao_account.email)
 
-          axios.post('http://localhost:8081/haru/kakaologin', params)
+          axios.post('http://localhost:8085/haru/kakao/login', params)
+          .then((res)=>{
+            console.log('통신성공', res.data.loginMember);
 
-        } catch (err) {
-          console.log('에러', err);
+            sessionStorage.setItem('email', res.data.loginMember.sns_user_email)
+            sessionStorage.setItem('id', res.data.loginMember.sns_user_id)
+            sessionStorage.setItem('nickname', res.data.loginMember.sns_user_name)
+            sessionStorage.setItem('type', res.data.loginMember.user_type)
+
+            console.log('세션 저장 성공, 이메일 :', sessionStorage.getItem('email'));
+            console.log('세션 저장 성공, 아이디 :', sessionStorage.getItem('id'));
+            console.log('세션 저장 성공, 닉네임 :', sessionStorage.getItem('nickname'));
+            console.log('세션 저장 성공, 유저타입 :', sessionStorage.getItem('type'));
+
+            nav('/haru/main')
+
+          }).catch((e)=>{
+            console.log('axios error!', e);
+          })
+        }catch(e){
+          console.log('try catch error', e);
         }
       };
 
@@ -39,9 +58,9 @@ const ProfilePath = () => {
 
     return(
         <div>
-        <h2>{userId}</h2>
+        {/* <h2>{userId}</h2>
         <h2>{nickName}</h2>
-        <h2>{email}</h2>
+        <h2>{email}</h2> */}
       </div>
     )
 }

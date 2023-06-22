@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.smhrd.haru.domain.HaruMember;
+import com.smhrd.haru.domain.LoginUserInfo;
 import com.smhrd.haru.mapper.MemberMapper;
 
 import jakarta.servlet.http.HttpServletResponse;
@@ -17,31 +18,86 @@ public class MemberService {
 
 	@Autowired
 	MemberMapper mapper;
-	
-	public JSONObject login(HaruMember harumember) {
 
+	public JSONObject join(HaruMember harumember) {
 		System.out.println("컨트롤러에서 넘어온 값 : " + harumember);
 
-		int cnt = mapper.join(harumember);
-
-		HaruMember loginMember = null;
-
-		if (cnt > 0) {
-			System.out.println("DB등록 성공");
-			loginMember = mapper.login(harumember);
-		} else {
-			System.out.println("DB등록 실패");
-		}
+		HaruMember joinMember = null;
 
 		JSONObject obj = new JSONObject();
 
-		obj.put("loginMember", loginMember);
+		Integer memberCheck = mapper.memberCheck(harumember);
+
+		if (memberCheck != null) {
+			System.out.println("기존에 등록된 멤버");
+//			joinMember = mapper.login(harumember);
+//			obj.put("joinMember", joinMember);
+		} else { // 회원가입 진행
+			int cnt = mapper.join(harumember);
+			if (cnt > 0) {
+				System.out.println("회원가입 성공");
+				joinMember = mapper.login(harumember);
+				obj.put("joinMember", joinMember);
+			} else {
+				System.out.println("회원가입 실패");
+			}
+		}
+		return obj;
+	}
+
+	public JSONObject login(HaruMember harumember) {
+		System.out.println("컨트롤러에서 넘어온 값 : " + harumember);
+
+		HaruMember loginMember = null;
+
+		JSONObject obj = new JSONObject();
+
+		Integer memberCheck = mapper.memberCheck(harumember);
+		
+		if(memberCheck != null) {
+			loginMember = mapper.login(harumember);
+			obj.put("loginMember", loginMember);
+		} else {
+			System.out.println("로그인 실패!");
+		}
+		return obj;
+	}
+
+	public JSONObject snsLogin(HaruMember harumember) {
+
+		System.out.println("컨트롤러에서 넘어온 값 : " + harumember);
+		// id를 가져와야해
+		String sns_user_id = harumember.getSns_user_id();
+
+		HaruMember loginMember = null;
+
+		JSONObject obj = new JSONObject();
+
+		// 기존에 등록된 멤버인지 확인
+		Integer snsMemberCheck = mapper.snsMemberCheck(harumember);
+
+		if (snsMemberCheck != null) {
+			System.out.println("기존에 등록된 멤버");
+			loginMember = mapper.snsLogin(sns_user_id);
+			obj.put("loginMember", loginMember);
+		} else { // 처음 가입한 멤버
+			int cnt = mapper.snsJoin(harumember);
+
+			if (cnt > 0) {
+				System.out.println("DB등록 성공");
+				loginMember = mapper.snsLogin(sns_user_id);
+				System.out.println("DB등록 후 반환 loginMember" + loginMember.getSns_user_email());
+				obj.put("loginMember", loginMember);
+
+			} else {
+				System.out.println("DB등록 실패");
+			}
+
+		}
 
 		return obj;
 	}
 
-	
-	
 // 이전 코드들(사용X)	
 //	public JSONObject kakaoLogin2(HaruMember member) {
 //		HaruMember harumember = mapper.kakaoLogin2(member);
