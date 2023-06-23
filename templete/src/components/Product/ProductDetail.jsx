@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation, useParams, useNavigate } from 'react-router'
 import axios from 'axios'
-import { Container, Row, Col, Button } from 'reactstrap'
+import { Container, Row, Col, Button, Card } from 'reactstrap'
 
 const ProductDetail = ({addWishList, wishData, setWishList, wishList, setProductIdMain, nutri, setNutri}) => {
 
@@ -66,13 +66,15 @@ const ProductDetail = ({addWishList, wishData, setWishList, wishList, setProduct
 
   return (
     <div>
-        <Container >
+        <Container>
             <Row>
                 <Col>
+                <Card className='product-img'>
                     <img src={`${img}`}></img>
+                </Card>
                 </Col>
                 <Col>
-                    <h6>{title}</h6>
+                    <h4 className='title font-bold'>{title}</h4>
                     <p>가격 : {price}원 </p> 
                     <p>포장수량 : {packageUnit}</p>
                     <p>영양성분 : {nutri}</p>
@@ -94,6 +96,7 @@ const ProductDetail = ({addWishList, wishData, setWishList, wishList, setProduct
                     </Row>                
                 </Col>
             </Row>
+            <Container>
             <Row>
                 <Row>
                     섭취방법 : 
@@ -103,14 +106,17 @@ const ProductDetail = ({addWishList, wishData, setWishList, wishList, setProduct
                     <Col>{bfAfMeal}</Col>
                 </Row>
             </Row>
+            <hr/>
             <Row>
-                <Row>섭취주의사항 :</Row>
-                <Row>{note}</Row>
+                <Row><h4 className='title font-bold'>섭취주의사항</h4></Row>
+                <Row>- {note}</Row>
             </Row>
+            <br/>
             <Row>
-                <Button onClick={()=>{window.location.href=`${url}`}}>상품 URL 연결</Button>
-                <Button onClick={addWishList}>제품 찜하기</Button>
+                <Button onClick={()=>{window.location.href=`${url}`} } size="lg" className="url-btn" color="success">상품 URL 연결</Button>
+                <Button onClick={addWishList} size="lg" className="url-btn" color="success">제품 찜하기</Button>
             </Row>
+            </Container>
         </Container>
     </div>
   )

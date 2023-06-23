@@ -11,7 +11,6 @@ const SurveyNew = () => {
   const [interest, setInterest] = useState([])
 
   const selectGender = (e)=>{
-    
 
     if(e.target.type == 'button'){
       setGender(e.target.value )
@@ -73,6 +72,7 @@ const SurveyNew = () => {
   const submitInterest = ()=>{
     console.log('completSelect Interest');
     console.log('length : ', interest.length);
+    setIsActive(!isActive)
     if(tempList.length < 3){
       alert('항목 3가지를 선택해 주세요') 
       cntCk = 0;
@@ -83,6 +83,8 @@ const SurveyNew = () => {
       setVisibleResult(true)
     }
   }
+
+  const [isActive, setIsActive] = useState(false);
 
   return (
     <div>
@@ -95,7 +97,7 @@ const SurveyNew = () => {
       <SurveyBirthYear select={select} selectAgeArange={selectAgeArange} submitAge={submitAge}/>}
 
       {visibleInterest && 
-      <SurveyInterest cntCk={cntCk} selectInterest={selectInterest} submitInterest={submitInterest}/>}
+      <SurveyInterest cntCk={cntCk} selectInterest={selectInterest} submitInterest={submitInterest} isActive={isActive}/>}
 
       {visibleResult && 
       <SurveyResult gender={gender} ageRange={ageRange} interest={interest}/> }

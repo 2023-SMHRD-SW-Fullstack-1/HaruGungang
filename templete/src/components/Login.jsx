@@ -1,11 +1,18 @@
 import React, {useEffect} from 'react'
 import axios from 'axios'
 import { useState } from 'react'
-import { useNavigate } from 'react-router'
+import { useNavigate, useParams } from 'react-router-dom'
+import GoogleLogin from './SNSLogin/google'
+import KakaoLogin from './SNSLogin/kakao'
+import NaverLogin from './SNSLogin/naver'
+import { Container, Row, Col, Card, CardBody } from 'reactstrap';
 
-const Login = ({ KAKAO_AUTH_URL }) => { 
+
+const Login = ({ KAKAO_AUTH_URL }) => {
 
   const nav = useNavigate()
+
+  const { menu } = useParams()
 
   const [id, setId] = useState('')
   const [pw, setPw] = useState('')
@@ -47,20 +54,37 @@ const Login = ({ KAKAO_AUTH_URL }) => {
 
           alert('로그인 성공')
 
-          // setIsOpen(!isOpen)
-
-          nav('/haru/main')
+          if (menu === 'mypage') {
+            nav('/haru/mypage')
+          } else if (menu === 'wishlist') {
+            nav('/haru/wishlist')
+          } else {
+            nav('/haru/main')
+          }
         })
         .catch(e => console.log(e))
     }
   }
 
+  // sns 로그인
+  const onSuccessHandler = res => {
+    console.log(res)
+  }
   return (
     <div className='main_login'>
-      <h2>하루건강</h2>
-      <p className='info'>로그인 후 이용하실 수 있습니다.</p>
+        <div className="spacer" id="forms-component">
+    <Container>
+        <Row className="justify-content-center">
+            <Col md="7" className="text-center">
+                <h1 className="title font-bold">로그인</h1>
+            </Col>
+        </Row>
+    </Container>
+      <Card className=''>
+      
       <fieldset>
         <legend>로그인 입력 폼</legend>
+        <CardBody>
         <p className='id_field'>
           <label for="uid" id="uid_label" style={{display: 'block'}}>
             <span className="zh" data-translate="아이디">아이디</span>
@@ -83,16 +107,31 @@ const Login = ({ KAKAO_AUTH_URL }) => {
             </button>
         </p>
         <div className='signup_area'>
-          <a className='naver' href='https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=4aWJJDtBTDQlg2SlFym8&state=STATE_STRING&redirect_uri=http://localhost:8081/auth/naver/callback'>
+          {/* <a className='naver' href='https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=4aWJJDtBTDQlg2SlFym8&state=STATE_STRING&redirect_uri=http://localhost:8081/auth/naver/callback'>
             <em></em>
             네이버로 로그인
           </a>
           <a className='kakao' href={KAKAO_AUTH_URL}>
             <em></em>
             카카오로 로그인
-          </a>
+          </a> */}
+          <GoogleLogin
+            success={onSuccessHandler}
+            fail={res => console.log(res)}
+          />
+          <NaverLogin
+            success={onSuccessHandler}
+            fail={res => console.log(res)}
+          />
+          <KakaoLogin
+            success={onSuccessHandler}
+            fail={res => console.log(res)}
+          />
         </div>
+        </CardBody>
       </fieldset>
+      </Card>
+      </div>
     </div>
   )
 }

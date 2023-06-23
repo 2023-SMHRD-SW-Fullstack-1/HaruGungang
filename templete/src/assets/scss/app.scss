@@ -24,6 +24,7 @@ body {
     overflow-x: hidden;
     color: $bodytext;
     font-weight: 300;
+    padding-bottom: 150px;
 }
 
 html {
@@ -442,6 +443,10 @@ html body {
     .font-bold {
         font-weight: 10%;
         font-family: 'MBC1961GulimM';
+    }
+
+    .font-pre {
+        font-weight: 10%;
     }
 
     .font-semibold {
@@ -1770,4 +1775,21 @@ a.btn-outline-success {
     align-items: center;
     justify-content: center;
     font-family: 'MBC1961GulimM';
+}
+
+.font-Pretendard-Regular {
+    font-family: 'Pretendard-Regular';
+}
+
+.font-Gmarket {
+    font-family: 'GmarketSansMedium';
+}
+
+.font-IBM {
+    font-family: 'IBMPlexSansKR-Regular';
+    font-weight: 600px;
+}
+
+.font-NanumSquareNeo{
+    font-family: 'NanumSquareNeo-Variable';
 }

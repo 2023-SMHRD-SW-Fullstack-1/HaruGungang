@@ -5,12 +5,12 @@ import SearchStatic from './Main/SearchStatic';
 import axios from 'axios';
 
 //아이콘 import
-import blood from "../assets/images/icon/blood-vessel.png"
-import intestine from "../assets/images/icon/intestine.png"
-import liver from "../assets/images/icon/liver.png"
-import eyes from "../assets/images/icon/eyes.png"
+import blood from "../assets/images/icon/혈관1.png"
+import intestine from "../assets/images/icon/장.png"
+import liver from "../assets/images/icon/liver2.png"
+import eyes from "../assets/images/icon/eye.png"
 import bone from "../assets/images/icon/bone.png"
-import vitamin from "../assets/images/icon/vitamin.png"
+import vitamin from "../assets/images/icon/vitamin-c.png"
 
 const Main = () => {
 
@@ -58,18 +58,42 @@ const Main = () => {
    const [age, setAge] = useState("")
    const [data, setData] = useState([])
 
+   //필터 선택 유지
+    const [activeGenderW, setActiveGenderW] = useState(false);
+    const [activeGenderM, setActiveGenderM] = useState(false);
+    const [activeAgeGroup10, setActiveAgeGroup10] = useState(false);
+    const [activeAgeGroup20, setActiveAgeGroup20] = useState(false);
+    const [activeAgeGroup30, setActiveAgeGroup30] = useState(false);
+    const [activeAgeGroup40, setActiveAgeGroup40] = useState(false);
+    const [activeAgeGroup50, setActiveAgeGroup50] = useState(false);
+    const [activeAgeGroup60, setActiveAgeGroup60] = useState(false);
+
    const addGenderFilter = (e)=>{
        console.log('성별 필터 추가', e.target.value);
        setGender(e.target.value)
+       e.target.value == 'w' ? setActiveGenderW(!activeGenderW) : setActiveGenderM(!activeGenderM)
    }
 
    const addAgeFilter = (e)=>{
        console.log('연령대 필터 추가', e.target.value);
-       setAge(e.target.value)
+       setAge(e.target.value) 
+       if(e.target.value == '10'){
+         setActiveAgeGroup10(!activeAgeGroup10)
+      }else if(e.target.value == '20'){
+        setActiveAgeGroup20(!activeAgeGroup20)
+       }else if(e.target.value == '30'){
+        setActiveAgeGroup30(!activeAgeGroup30)
+       }else if(e.target.value == '40'){
+        setActiveAgeGroup40(!activeAgeGroup40)
+       }else if(e.target.value == '50'){
+        setActiveAgeGroup50(!activeAgeGroup50)
+       }else{
+        setActiveAgeGroup60(!activeAgeGroup60)
+       }
    }
 
    const loadData = ()=>{
-
+   
     let data = {
         gender : gender,
         age_range : age
@@ -91,7 +115,14 @@ const Main = () => {
         }]
         setRecommend(temp);
         setVisibleChart(true)
-
+        setActiveGenderW(false);
+        setActiveGenderM(false);
+        setActiveAgeGroup10(false)
+        setActiveAgeGroup20(false)
+        setActiveAgeGroup30(false)
+        setActiveAgeGroup40(false)
+        setActiveAgeGroup50(false)
+        setActiveAgeGroup60(false)
        }).catch((e)=>{
            console.log('error', e);
        })
@@ -106,24 +137,10 @@ const Main = () => {
     console.log('data', data);
    },[data])
 
+
   return (
     <div>
-{/* <<<<<<< HEAD
-      <div>
-        <SearchFunc 
-        title={title}
-        setTitle={setTitle}
-        nutri={nutri}
-        setNutri={setNutri}
-        effect={effect}
-        setEffect={setEffect}
-        func={func} btnClick={btnClick} visible={visible} setVisible={setVisible} />
-      </div>
-      <div>
-      <SearchStatic visibleChart={visibleChart} data={data} loadData={loadData} addGenderFilter={addGenderFilter} addAgeFilter={addAgeFilter}/>
-      </div> */}
-{/* ======= */}
-      <Row>
+    <Row>
         <SearchFunc 
         title={title}
         setTitle={setTitle}
@@ -131,10 +148,17 @@ const Main = () => {
         setNutri={setNutri}
         effect={effect}
         setEffect={setEffect} func={func} btnClick={btnClick} visible={visible} setVisible={setVisible} />
-      </Row>
-      <Row>
-        <SearchStatic visibleChart={visibleChart} data={data} loadData={loadData} addGenderFilter={addGenderFilter} addAgeFilter={addAgeFilter}/>
-      </Row>
+    </Row>
+    <Row>
+      <SearchStatic activeGenderW={activeGenderW} activeGenderM={activeGenderM} 
+      activeAgeGroup10={activeAgeGroup10}
+      activeAgeGroup20={activeAgeGroup20}
+      activeAgeGroup30={activeAgeGroup30}
+      activeAgeGroup40={activeAgeGroup40}
+      activeAgeGroup50={activeAgeGroup50}
+      activeAgeGroup60={activeAgeGroup60}
+      visibleChart={visibleChart} data={data} loadData={loadData} addGenderFilter={addGenderFilter} addAgeFilter={addAgeFilter} gender={gender} age={age}/>
+    </Row>
     </div>
   )
 }

@@ -6,6 +6,7 @@ import { useState } from 'react'
 import { useLocation } from 'react-router'
 import axios from 'axios'
 import { useEffect } from 'react'
+import { Container, Row } from 'reactstrap'
 
 const ResultOtherNutri = () => {
 
@@ -74,12 +75,18 @@ const ResultOtherNutri = () => {
     console.log('chartData2', chartData);
 
   return (
-    <div>
+    <div className="spacer" id="forms-component">
+      <Container>
+      <Row>
       <ProductDetailWish result={result}/>
-      <h5>가격정보</h5>
+      </Row>
+      <h5 className='title font-bold'>가격정보</h5>
       <PriceTotal chartData={chartData} result={result} totalPrice={totalPrice} setTotalPrice={setTotalPrice} totalPriceOnday={totalPriceOnday} setTotalPriceOneday={setTotalPriceOneday}/>
-      <h5>성분정보</h5>
+      <Row>
+      <h5 className='title font-bold'>성분정보</h5>
       <MaterialTotal result={result} />
+      </Row>
+      </Container>
     </div>
   )
 }

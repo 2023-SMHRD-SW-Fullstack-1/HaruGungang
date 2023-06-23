@@ -35,19 +35,22 @@ const ResultSameNutri = () => {
     console.log('result : ',result);
   },[result])
 
+  const [chartX, setChartX] = useState()
+
   return (
-    <div>
-      <h3>동일 영양성분 제품 비교하기</h3>
+    <div className="spacer" id="forms-component">
+      <Container>
+      <h3 className='title font-bold'>동일 영양성분 제품 비교하기</h3>
       <ProductDetailWish result={result}/>
-      <h5>함량 비교</h5>
+      <br/>
+      <h3 className='title font-bold'>함량 비교 : {chartX}</h3>
       <Container>
       <Row>
       {result.map((item)=>(
-        <Col>
-        <CompareMaterial item={item}/>
-        </Col>
+        <CompareMaterial item={item} chartX={chartX} setChartX={setChartX}/>
       ))}
       </Row>
+      </Container>
       </Container>
     </div>
   )

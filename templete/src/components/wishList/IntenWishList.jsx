@@ -11,6 +11,7 @@ const IntenWishList = ({intenList, userId, checkedAllItemHandler}) => {
   //체크박스 기능
   //선택된 체크박스 세트
   const [checkedItems, setCheckedItems] = useState(new Set())
+  const [checkedCnt, setCheckedCnt] = useState(0)
 
   const checkedItemHandler = (id, isChecked) => {
     console.log('checkedItemHandler', id);
@@ -20,10 +21,12 @@ const IntenWishList = ({intenList, userId, checkedAllItemHandler}) => {
       checkedItems.add(id)
       setCheckedItems(checkedItems)
         console.log('is checked', checkedItems);
+        setCheckedCnt(checkedCnt+1)
     }else if(!isChecked && checkedItems.has(id)){
       checkedItems.delete(id)
       setCheckedItems(checkedItems)
       console.log('no checked', checkedItems);
+      setCheckedCnt(checkedCnt-1)
     }
 
     if(checkedItems.size > 3){
@@ -33,16 +36,19 @@ const IntenWishList = ({intenList, userId, checkedAllItemHandler}) => {
 
   return (
     <div>
-        <h5>장 건강</h5>
+        <h4 className='title font-bold'>장 건강</h4>
         <FormGroup>
         <Container>
             <Row className="m-t-40 justify-content-center">
         {intenList.map((item)=>(
+          <Col>
             <WishItem item={item} userId={userId} checkedItemHandler={checkedItemHandler} checkedAllItemHandler={checkedAllItemHandler}/>
+          </Col>
         ))}
         </Row>
         </Container>
-        <Button color="success" onClick={()=>{nav("/haru/wishlist/samenutri", {state : {checkedItem : checkedItems}})}}>동일 영양성분군 비교하기</Button>
+        {checkedCnt!=0 && 
+        <Button color="success" onClick={()=>{nav("/haru/wishlist/samenutri", {state : {checkedItem : checkedItems}})}}>동일 영양성분군 비교하기</Button>}
         </FormGroup>
     </div>
   )

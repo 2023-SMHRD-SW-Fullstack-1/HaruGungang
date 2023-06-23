@@ -53,8 +53,8 @@ public class MemberService {
 		JSONObject obj = new JSONObject();
 
 		Integer memberCheck = mapper.memberCheck(harumember);
-		
-		if(memberCheck != null) {
+
+		if (memberCheck != null) {
 			loginMember = mapper.login(harumember);
 			obj.put("loginMember", loginMember);
 		} else {
@@ -96,6 +96,27 @@ public class MemberService {
 		}
 
 		return obj;
+	}
+
+	public int update(HaruMember updateMember) {
+		int cnt = mapper.update(updateMember);
+		return cnt;
+	}
+
+	public JSONObject memberInfo(String loginId) {
+		System.out.println("컨트롤러에서 넘어온 값 : " + loginId);
+
+		HaruMember harumember = mapper.memberInfo(loginId);
+
+		JSONObject obj = new JSONObject();
+
+		obj.put("HaruMember", harumember);
+
+		return obj;
+	}
+
+	public int delete(String id) {
+		return mapper.delete(id);
 	}
 
 // 이전 코드들(사용X)	

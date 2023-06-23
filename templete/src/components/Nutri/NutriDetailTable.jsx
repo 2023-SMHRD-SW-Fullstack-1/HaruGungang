@@ -28,26 +28,27 @@ const NutriDetailTable = ({setWithNotNutri, setWithNutri, setDailyRecTake, setIn
   return (
     <div>
                 <Container>
+                <h1 className='title font-bold'>{nutri_name}</h1>
                 <Row>
-                    <Col md="12">
-                        {effect!=null&&<Alert color="info">
-                            <h6>효능</h6>
-                            {effect}
+                <Col md="12" >
+                        {effect!=null&&<Alert color="success">
+                            <h4 className='title font-bold'>효능</h4>
+                            - {effect}
                             </Alert>}
-                        {intake!=null && <Alert color="info">
-                            <h6>복용방법</h6>
-                            {intake}
+                        {intake!=null && <Alert color="success">
+                            <h4 className='title font-bold'>복용방법</h4>
+                            - {intake}
                             </Alert>}
-                        {dailyRecTake!=null && <Alert color="info">
-                            <h6>1일권장섭취량</h6>
-                            {dailyRecTake.replace('|', '~')}
+                        {dailyRecTake!=null && <Alert color="success">
+                            <h4 className='title font-bold'>1일 권장 섭취량</h4>
+                            - {dailyRecTake.replace('|', '~')}
                             </Alert>}
-                        {withNutri != null && <Alert color="info">
-                            <h6>함께 섭취하면 좋아요</h6>
+                        {withNutri != null && <Alert color="primary">
+                            <h4 className='title font-bold'>함께 섭취하면 좋아요</h4>
                             {withNutri}
                             </Alert>}
-                        {withNotNutri!=null && <Alert color="info">
-                            <h6>함께 섭취하면 좋지 않아요</h6>
+                        {withNotNutri!=null && <Alert color="danger">
+                            <h4 className='title font-bold'>함께 섭취하면 좋지 않아요</h4>
                             {withNotNutri}
                             </Alert>}
                     </Col>

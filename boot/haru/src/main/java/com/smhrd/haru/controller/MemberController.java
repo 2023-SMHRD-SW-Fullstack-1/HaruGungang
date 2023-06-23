@@ -14,6 +14,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -27,6 +28,7 @@ import com.smhrd.haru.domain.HaruMember;
 import com.smhrd.haru.domain.JoinUserInfo;
 import com.smhrd.haru.domain.KakaoMember;
 import com.smhrd.haru.domain.LoginUserInfo;
+import com.smhrd.haru.domain.UpdateUserInfo;
 import com.smhrd.haru.domain.kakao.KakaoProfile;
 import com.smhrd.haru.domain.kakao.OAuthToken;
 import com.smhrd.haru.domain.naver.NaverProfile;
@@ -41,44 +43,45 @@ public class MemberController {
 
 	@Autowired
 	MemberService service;
-	
+
 	@PostMapping("/join")
 	public JSONObject join(@RequestBody JoinUserInfo userInfo) {
 		System.out.println("리액트에서 온 값 : " + userInfo);
-		
+
 		String userType = "C";
-		
-		HaruMember harumember = new HaruMember(userInfo.getId(), userInfo.getPw(), userInfo.getGender(), userInfo.getAge(), userType);
-		
+
+		HaruMember harumember = new HaruMember(userInfo.getId(), userInfo.getPw(), userInfo.getGender(),
+				userInfo.getAge(), userType);
+
 		JSONObject obj = service.join(harumember);
-		
+
 		System.out.println("리액트로 보낼 값 : " + obj);
-		
+
 		return obj;
 	}
-	
+
 	@PostMapping("/login")
 	public JSONObject login(@RequestBody LoginUserInfo userInfo) {
 		System.out.println("리액트에서 온 값 : " + userInfo);
-		
+
 		HaruMember harumember = new HaruMember(userInfo.getId(), userInfo.getPw());
-		
+
 		JSONObject obj = service.login(harumember);
-		
+
 		System.out.println("리액트로 보낼 값 : " + obj);
-		
+
 		return obj;
 	}
-	
+
 	@PostMapping("/kakao/login")
 	public JSONObject snsLogin(KakaoMember member) {
-		
+
 		System.out.println("여기는 8085");
-		
+
 		System.out.println("리액트에서 넘어온 값 : " + member.getId());
 		System.out.println("리액트에서 넘어온 값 : " + member.getNickName());
 		System.out.println("리액트에서 넘어온 값 : " + member.getEmail());
-		
+
 		String type = "K";
 		String id = member.getId();
 		String name = member.getNickName();
@@ -95,10 +98,41 @@ public class MemberController {
 		System.out.println("return obj" + obj);
 //	
 		return obj;
-	}	
-	
-	
-	
+	}
+
+	// 회원정보 수정
+	@PostMapping("/update")
+	public int update(@RequestBody UpdateUserInfo updateUserInfo) {
+		System.out.println("리액트에서 넘어온 값 : " + updateUserInfo);
+
+		String user_id = updateUserInfo.getUserId();
+		String user_pw = updateUserInfo.getUserPw();
+		String user_gender = updateUserInfo.getUserGender();
+		String user_age = updateUserInfo.getUserAge();
+		String user_type = updateUserInfo.getUserType();
+
+		HaruMember updateMember = new HaruMember(user_id, user_pw, user_gender, user_age, user_type);
+
+		return service.update(updateMember);
+
+	}
+
+	// 회원 1명 전체 정보 반환
+	@GetMapping("/memberinfo/{loginId}")
+	public JSONObject memberInfo(@PathVariable String loginId) {
+		System.out.println("마이페이지 통신성공 : " + loginId);
+
+		return service.memberInfo(loginId);
+	}
+
+	// 회원 정보 삭제
+	@GetMapping("/delete/{id}")
+	public int delete(@PathVariable String id) {
+		System.out.println("회원 삭제 통신 성공 : " + id);
+
+		return service.delete(id);
+	}
+
 //	@GetMapping("/auth/kakao/callback")
 //	public @ResponseBody JSONObject kakaoCallback(String code, HttpSession session, HttpServletResponse res) {
 //

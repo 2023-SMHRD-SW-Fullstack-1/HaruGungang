@@ -39,8 +39,8 @@ const NutriFaq = ({nutri_name}) => {
                 <Row>
                     <Col md="12">
                         <Alert color="info">
-                                <h6>{item.question}</h6>
-                                <p>{item.answer}</p>
+                                <h4 className='title font-bold'>Q. {item.question}</h4>
+                                <p>A. {item.answer}</p>
                             </Alert>
                     </Col>
                 </Row>

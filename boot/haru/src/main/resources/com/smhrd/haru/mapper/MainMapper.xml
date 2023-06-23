@@ -6,4 +6,8 @@
   	<select id="recNutriList" resultType="com.smhrd.haru.domain.TblNutriRecBasic">
   		select * from tbl_nutri_rec_basic where gender=#{gender} and age_range=#{age_range}
   	</select>
+  	
+  	<update id="update" parameterType="com.smhrd.haru.domain.HaruMember">
+  		
+  	</update>
    </mapper>

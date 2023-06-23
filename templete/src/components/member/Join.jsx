@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, ButtonGroup } from 'reactstrap';
 import { Container, Row, Col, Form, FormGroup, Label, Input, Button, FormFeedback } from 'reactstrap';
 import {useNavigate} from 'react-router-dom'
-const Join = () => {
 
+const Join = () => {
   
   const [id, setId] = useState('')
   const [pw, setPw] = useState('')
@@ -50,7 +50,7 @@ const Join = () => {
           console.log('통신성공' , res.data);
 
           if(JSON.stringify(res.data) === '{}') {
-            alert('이미 등록된 회원입니다!')
+            alert('이미 등록된 회원입니다! 아이디, 비밀번호를 확인하세요')
             nav('/haru/preview')
           } else if (res.data.joinMember.user_id === id) {
             alert('회원가입이 완료되었습니다! 로그인 진행해주세요.')

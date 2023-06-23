@@ -28,8 +28,6 @@ const NutriDetail = () => {
 
   return (
     <div>
-        <h5>{nutri_name}</h5>
-
         {/* 상세정보 */}
         <NutriDetailTable setWithNotNutri={setWithNotNutri} setEffect={setEffect} setIntake={setIntake} setDailyRecTake={setDailyRecTake} setWithNutri={setWithNutri} nutri_name={nutri_name} effect={effect} intake={intake} dailyRecTake={dailyRecTake} withNutri={withNutri} withNotNutri={withNotNutri}/>
         {/* FAQ */}
@@ -37,7 +35,7 @@ const NutriDetail = () => {
                 <Row>
                     <Col md="12">
                         <Alert color="info">
-                            <h6>FAQ</h6>
+                            <h4 className='title font-bold'>FAQ</h4>
                             <p>궁금한 점들을 확인해 보세요!</p>
                             <a className="linking text-themecolor" onClick={loadingFaq}>Explore More<i className="ti-arrow-right"></i></a>
                             </Alert>

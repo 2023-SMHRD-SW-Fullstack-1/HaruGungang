@@ -78,7 +78,7 @@ const PriceTotalChart = ({chartData}) => {
 
   return (
     <div>
-        <PieChart width={400} height={400}>
+        <PieChart width={500} height={500}>
           <Pie
             activeIndex={activeIndex}
             activeShape={renderActiveShape}

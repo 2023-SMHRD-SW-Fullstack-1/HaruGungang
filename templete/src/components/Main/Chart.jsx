@@ -7,7 +7,7 @@ const Chart = ({data}) => {
         console.log('chart comp', data);
     },[data])
 
-    const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
+    const COLORS = ["#006266", "#1289A7", "#3d3d3d", "#FF8042"];
 
     const RADIAN = Math.PI / 180;
     const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
@@ -24,13 +24,15 @@ const Chart = ({data}) => {
 
   return (
     <div>
-        <PieChart width={1000} height={500}>
+      <div >
+        <PieChart width={500 } height={400} id='chart-wrapper'>
         <Pie
+        id='chart'
         data={data}
         cx={120}
         cy={200}
-        innerRadius={40}
-        outerRadius={80}
+        innerRadius={60}
+        outerRadius={100}
         fill="#8884d8"
         paddingAngle={5}
         dataKey="value"
@@ -41,9 +43,10 @@ const Chart = ({data}) => {
         {data.map((entry, index) => (
           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
         ))}
-        <LabelList dataKey="Nutriname" position="inside" />
+        <LabelList dataKey="Nutriname" position="inside"/>
         </Pie>
         </PieChart>
+      </div>
     </div>
   )
 }

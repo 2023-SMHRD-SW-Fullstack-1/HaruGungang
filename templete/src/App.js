@@ -10,7 +10,6 @@ import Preview from "./components/Preview";
 import Login from "./components/Login";
 import Join from "./components/member/Join";
 import Delete from "./components/member/Delete";
-import NutritionInfo from "./components/Main/NutritionInfo";
 import ResultSameNutri from "./components/wishList/ResultSameNutri";
 import ResultOtherNutri from "./components/wishList/ResultOtherNutri";
 import SurveyNew from "./components/SurveyNew";
@@ -29,12 +28,21 @@ const kakaoRedirectUri = "http://localhost:3000/auth/kakao/callback";
 const loginUri = `https://kauth.kakao.com/oauth/authorize?client_id=${kakaoClientId}\
 &redirect_uri=${kakaoRedirectUri}&response_type=code`;
 
+const naverClientId = "4aWJJDtBTDQlg2SlFym8";
+const naverRedirectUri = "http://localhost:3000/auth/naver/callback";
+const naverLoginUri = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${naverClientId}&redirect_uri=${naverRedirectUri}&state=hLiDdL2uhPtsftcU`;
+
 function App() {
   const [productIdMain, setProductIdMain] = useState();
   const [nutri, setNutri] = useState("");
 
   //임시 유저 아이디
+  // const [userId, setUserId] = useState();
   let userId = "test3";
+
+  // useEffect(() => {
+  //   setUserId(sessionStorage.getItem("id"));
+  // }, [isLogin]);
 
   //로그인 상태
   const [isLogin, setIsLogin] = useState(true);
@@ -91,9 +99,9 @@ function App() {
         {/* 찜리스트 */}
         <Route path="/haru/wishlist" element={<WishList userId={userId} />} />
 
-        {/* 카카오 로그인 */}
+        {/* 로그인 */}
         <Route
-          path="/haru/login"
+          path="/haru/login/:menu"
           element={<Login KAKAO_AUTH_URL={loginUri} />}
         />
         <Route path="/auth/kakao/callback" element={<Auth />} />

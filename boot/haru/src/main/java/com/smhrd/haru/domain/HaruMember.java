@@ -48,6 +48,11 @@ public class HaruMember {
 		this.user_pw = user_pw;
 	}	
 	
+	public HaruMember(String user_id, String user_pw, String user_age) {
+		this.user_id = user_id;
+		this.user_pw = user_pw;
+		this.user_age = user_age;
+	}
 	
 
 }

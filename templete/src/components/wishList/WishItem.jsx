@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react';
-import { Button, Row, Col, Container, Card, FormGroup, Input } from 'reactstrap';
+import { Button, Row, Col, Container, Card, FormGroup, Input, CardBody } from 'reactstrap';
 import axios from 'axios'
 
 const WishItem = ({item, checkedItemHandler, userId, checkedAllItemHandler}) => {
@@ -39,16 +39,16 @@ const WishItem = ({item, checkedItemHandler, userId, checkedAllItemHandler}) => 
 
   return (
     <div>
-        <Col lg="4" md="6">
             <Input name="bloodCk" type="checkbox" checked={bChecked} onChange={(e) => checkHandler(e)}></Input>
             <Card>
                 <img className="card-img-top" alt="wrappixel kit" src={item.wishlist.img}/>
-                <h5 className="font-medium m-t-30">{item.wishlist.detail_name}</h5>
+                <CardBody>
+                <h5 className="title font-bold">{item.wishlist.detail_name}</h5>
                 <p className="m-t-20">{item.wishlist.detail_price}원</p>
                 <p className="m-t-20">{item.wishlist.manufacturer}</p>
                 <Button onClick={cancelWishItem}>찜하기 취소</Button>
-            </Card>
-        </Col>
+                </CardBody> 
+            </Card> {"   "}
     </div>
   )
 }

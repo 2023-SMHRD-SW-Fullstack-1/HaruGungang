@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button } from 'reactstrap';
+import { Button, Container } from 'reactstrap';
 import axios from 'axios'
 import EyeWishList from './wishList/EyeWishList';
 import LiverWishList from './wishList/LiverWishList';
@@ -18,6 +18,8 @@ const WishList = ({userId}) => {
 
   //찜리스트 서버에서 받아오기
   useEffect(()=>{
+    // userId = sessionStorage.getItem('id')
+    console.log('아이디 :', userId);
     axios.get(`http://localhost:8085/haru/wishlist/${userId}`)
     .then((res)=>{
       console.log('찜리스트 통신 성공', res.data);
@@ -87,6 +89,7 @@ const WishList = ({userId}) => {
   //선택된 체크박스 세트
 
   const [checkedAllItems, setCheckedAllItems] = useState(new Set())
+  const [checkedAllCnt, setCheckedAllCnt] = useState(0)
 
   const checkedAllItemHandler = (id, isChecked) => {
     console.log('checkedAllItemHandler', id);
@@ -96,10 +99,12 @@ const WishList = ({userId}) => {
       checkedAllItems.add(id)
       setCheckedAllItems(checkedAllItems)
         console.log('모든 성분 is checked', checkedAllItems);
+        setCheckedAllCnt(checkedAllCnt+1)
     }else if(!isChecked && checkedAllItems.has(id)){
       checkedAllItems.delete(id)
       setCheckedAllItems(checkedAllItems)
       console.log('모든 성분 no checked', checkedAllItems);
+      setCheckedAllCnt(checkedAllCnt-1)
     }
 
     if(checkedAllItems.size > 3){
@@ -113,8 +118,13 @@ const WishList = ({userId}) => {
 
   return (
     <div>
-      <h3>찜리스트</h3>
-      <div>
+    <Container>
+    <div className='box-container'>
+  <div className="justify-content-center">
+  <br/><br/>
+<h2 className='title font-bold text-center'>찜리스트</h2>
+
+<div>
         {/* 눈건강 */}
         {isVisibleEye && <EyeWishList checkedAllItemHandler={checkedAllItemHandler} eyeList={eyeList} userId={userId}/>}
         {/* 혈행흐름개선 */}
@@ -127,8 +137,12 @@ const WishList = ({userId}) => {
         {isVisibleBone && <BoneWishList checkedAllItemHandler={checkedAllItemHandler} boneList={boneList} userId={userId} />}
         {/* 항산화 */}
         {isVisibleAntiOxi && <AntiOxiWishList checkedAllItemHandler={checkedAllItemHandler} antiOxiList={antiOxiList} userId={userId} />}
-        <Button color="success" onClick={()=>{nav("/haru/wishlist/othernutri", {state : {checkedAllItems : checkedAllItems}})}}>영양성분 조합 확인하기</Button>
+        {checkedAllCnt > 0 && 
+        <Button color="success" onClick={()=>{nav("/haru/wishlist/othernutri", {state : {checkedAllItems : checkedAllItems}})}}>영양성분 조합 확인하기</Button>}
       </div>
+      </div>
+</div>
+      </Container>
     </div>
   )
 }

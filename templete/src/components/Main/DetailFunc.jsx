@@ -33,8 +33,8 @@ const DetailFunc = ({title, setTitle, nutri, setNutri, effect, setEffect, func, 
     <div >
         <Row>
         {func.map((item)=>(
-            <Col md="4" xs="6" >
-            <Card className="card-shadow" >
+            <Col col-md-3 col-sm-3 col-xs-6>
+            <Card className="card-shadow" outline="true" color="white">
                 <a href="#" className="img-ho" onClick={(e)=>{
                     setVisible(!visible)
                     setTitle(e.target.name);
@@ -42,7 +42,7 @@ const DetailFunc = ({title, setTitle, nutri, setNutri, effect, setEffect, func, 
                     <img className="card-img-top" alt="wrappixel kit" src={item.url} name={item.effect}/>
                     </a>
                 <CardBody>
-                    <h5 className="font-medium m-b-0">{item.effect}</h5>
+                <h4 className="title font-bold-center">{item.effect}</h4>
                 </CardBody>
             </Card>
         </Col>

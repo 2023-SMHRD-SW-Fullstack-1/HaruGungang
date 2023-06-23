@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import ProductItem from './ProductItem';
+import { Container } from 'reactstrap';
 
 const NturiProducts = ( {withNotNutri, withNutri, dailyRecTake, nutri_name, setProductList, productList }) => {
     
@@ -50,9 +51,11 @@ const NturiProducts = ( {withNotNutri, withNutri, dailyRecTake, nutri_name, setP
   return (
     <div>
         <ProductItem withNotNutri={withNotNutri} withNutri={withNutri} dailyRecTake={dailyRecTake} productList={productList} setProductList={setProductList} nutri_name={nutri_name}/>
+        <Container>
         <button className='btn btn-success' onClick={()=>{
           display == 3 ? setDisplay(9) : setDisplay(3)
         }}>{moreText}</button>
+        </Container>
     </div>
   )
 }
