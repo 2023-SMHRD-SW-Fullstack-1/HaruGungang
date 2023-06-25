@@ -1,76 +1,30 @@
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import styles from "../styles/FirstPage.module.css";
+import { HashLink as Link } from 'react-router-hash-link';
+import { Button, Container, Row, Col } from 'reactstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+//import { Button } from 'react-bootstrap';
 
 const Preview = () => {
-
-  const nav = useNavigate()
-
   return (
-    <div className={styles.firstPage}>
-            <div className={styles.parent}>
-        <div className={styles.div}>
-          <span className={styles.txt}>
-            <p className={styles.p}>{`영양제! 언제? 뭐랑? `}</p>
-            <p className={styles.p1}>먹으면 더 좋을까?</p>
-          </span>
+    <div className="static-slider-head">
+            <Container>
+                <Row className="justify-content-center">
+                <Col lg="8" md="" className="align-self-center text-center">
+                        {/* <h4 className="subtitle font-light">Powerful Reactstrap UI Kit with<br /> Beautiful Pre-Built Demos</h4> */}
+                        
+                        <div className='intro_btn'>
+                        <Button id='tooltip' className="preview-btn" color="success" onClick={()=>{window.location.href="/haru/survey"}}><h4 className='preview-font'>설문하고 추천받기</h4>
+                                <Button type="button" color="outline-success" className='tooltipText1'>간단한 설문으로 내게 필요한 영양소를 추천 받고 싶다면?!</Button>
+                            </Button>
+                            <Button id='tooltip' className="preview-btn" color="success" onClick={()=>{window.location.href="/haru/main"}}><h4 className='preview-font'>기능성 검색하기</h4>
+                                <Button type="button" color="outline-success" className='tooltipText2'>기능성 정보 검색을 간편하게!</Button>
+                            </Button>
+                            </div>
+                    </Col>
+                </Row>
+            </Container>
         </div>
-        <div className={styles.div1}>•</div>
-        <div className={styles.div2}>•</div>
-        <div className={styles.div3}>•</div>
-        <div className={styles.div4}>•</div>
-      </div>
-      <div className={styles.join}>JOIN</div>
-      <div className={styles.login}>LOGIN</div>
-      <div className={styles.vectorParent}>
-        <img className={styles.groupChild} alt="" src="/rectangle-113.svg" />
-        <div className={styles.harugungang}>HARUGUNGANG</div>
-      </div>
-      <img className={styles.openDoodlesIcon} alt="" src="/open-doodles.svg" />
-      <div className={styles.lowerBarParent}>
-        <div className={styles.lowerBar}>
-          <div className={styles.lowerBarChild} />
-          <div className={styles.mainParent}>
-            <div className={styles.main}>Main</div>
-            <div className={styles.wishList}>Wish List</div>
-          </div>
-          <div className={styles.mypage}>mypage</div>
-        </div>
-        <img className={styles.vectorIcon} alt="" src="/vector.svg" />
-        <img
-          className={styles.component10Icon}
-          alt=""
-          src="/component-10.svg"
-        />
-        <img
-          className={styles.iconixtoboldcart}
-          alt=""
-          src="/iconixtoboldcart.svg"
-        />
-      </div>
-      <div className={styles.buttonPrimary}>
-        <div className={styles.calque12}>
-          <img className={styles.vectorIcon1} alt="" src="/vector1.svg" />
-          <Link to='/survey'>
-          <div className={styles.div5}>
-            <p className={styles.p}>{`설문하고 `}</p>
-            <p className={styles.p}>추천받기</p>
-          </div>
-          </Link>
-        </div>
-      </div>
-      <div className={styles.buttonPrimary1}>
-        <div className={styles.calque12}>
-          <img className={styles.vectorIcon1} alt="" src="/vector1.svg" />
-          <div className={styles.div6}>
-            <p className={styles.p}>영양제</p>
-            <p className={styles.p}>정보보기</p>
-          </div>
-        </div>
-      </div>
-    </div>
   )
 }
 
 export default Preview
-
